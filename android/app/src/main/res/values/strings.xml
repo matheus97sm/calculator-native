@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Open Source Calculator</string>
+    <string name="CodePushDeploymentKey" moduleConfig="true">gD_OBMFBiuZFk2LxL5dZ6VOzOHHNjCX7-mLpA</string>
 </resources>
