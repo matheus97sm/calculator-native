@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.calculatornative"
+        applicationId "com.mathdev.calculatornative"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -152,7 +152,13 @@ android {
     }
     buildTypes {
         debug {
+          buildConfigField "string", "CODEPUSH_KEY", '""'
             signingConfig signingConfigs.debug
+        }
+        releaseStaging {
+          buildConfigField "string", "CODEPUSH_KEY", '"gD_OBMFBiuZFk2LxL5dZ6VOzOHHNjCX7-mLpA"'
+
+          matchingFallbacks = ['debug', 'release']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -160,6 +166,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+          buildConfigField "string", "CODEPUSH_KEY", '"aNALeyg0rcaHCJ2Bh0WLr-pUlybLmXEPpwjzB"'
         }
     }
     // applicationVariants are e.g. debug, release
@@ -197,5 +204,11 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+project.ext.vectoricons = [
+    iconFontNames: [ 'FontAwesome.ttf', 'FontAwesome5_Brands.ttf', 'FontAwesome5_Regular.ttf', 'FontAwesome5_Solid.ttf' ]
+]
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
