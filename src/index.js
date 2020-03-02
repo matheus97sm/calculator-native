@@ -49,4 +49,4 @@ const App = () => {
 
 export default CodePush({
   checkFrequency: CodePush.checkFrequency.ON_APP_RESUME,
-})();
+})(App);
